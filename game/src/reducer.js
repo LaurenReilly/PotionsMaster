@@ -1,13 +1,13 @@
 let initalState = {
-    potion: "",
-    recipe: [],
+    potion: "Cure For Boils",
+    recipe: ["one", "two", "three"],
     username: "",
     score: 0,
     userPotion: [],
 }
 
 let reducer = (state = initalState, action) => {
-    let {type, ingredient, username, potion, recipe} = action;
+    let {type, ingredient, username, potion} = action;
     if (type === "ADD") {
         return {
             ...state,
@@ -28,11 +28,11 @@ let reducer = (state = initalState, action) => {
             ...state,
             username: username,
         }
-    } else if (type === "NEW_POTION") {
+    } else if (type === "NEW") {
         return {
             ...state,
-            potion: potion,
-            recipe: recipe,
+            potion: potion.name,
+            recipe: potion.recipe,
         }
     } else {
         return state;
