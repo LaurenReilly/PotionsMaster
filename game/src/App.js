@@ -7,7 +7,7 @@ class App extends Component {
       <div className="App">
         <p>{this.props.score}</p>
         <div>
-          <h2>{this.props.potion}</h2>
+          <h2>{this.props.name}</h2>
           {this.props.recipe.map((ingredient, i) => {
             if(i === 0) {
               return (<p>First add {ingredient}</p>)
@@ -17,12 +17,12 @@ class App extends Component {
           })}
         </div>
         <div>
-          <button onClick={this.props.add("one")}>one</button>
-          <button onClick={this.props.add("two")}>two</button>
-          <button onClick={this.props.add("three")}>three</button>
-          <button onClick={this.props.add("four")}>four</button>
-          <button onClick={this.props.add("five")}>five</button>
-          <button onClick={this.props.add("six")}>six</button>
+          <button onClick={() => this.props.add("one")}>one</button>
+          <button onClick={() => this.props.add("two")}>two</button>
+          <button onClick={() => this.props.add("three")}>three</button>
+          <button onClick={() => this.props.add("four")}>four</button>
+          <button onClick={() => this.props.add("five")}>five</button>
+          <button onClick={() => this.props.add("six")}>six</button>
         </div>
         <button onClick={() => {
           let status = check(this.props.recipe, this.props.userPotion)
@@ -42,12 +42,15 @@ class App extends Component {
   }
 }
 
+
+//array of all possible potions
 let potions = [
   {name: "luck", recipe: ["one", "two", "three"]},
   {name: "poison", recipe: ["three", "four", "five"]},
   {name: "love", recipe: ["four", "five", "six"]}
 ]
 
+// functions to return one random potion from the array
 let random = (max) => {
   return Math.floor(Math.random() * max);
 }
@@ -55,7 +58,7 @@ let random = (max) => {
 let newPotion = () => {
   let potion = potions[random(potions.length)]
   return {
-      potion: potion.name,
+      name: potion.name,
       recipe: potion.recipe
   }
 }
@@ -74,7 +77,7 @@ let check = (arr1, arr2) => {
 
 let mapStateToProps = (state) => {
   return {
-    potion: state.potion,
+    name: state.name,
     recipe: state.recipe,
     username: state.username,
     score: state.score,

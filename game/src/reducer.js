@@ -1,5 +1,5 @@
 let initalState = {
-    potion: "Cure For Boils",
+    name: "Cure For Boils",
     recipe: ["one", "two", "three"],
     username: "",
     score: 0,
@@ -17,11 +17,13 @@ let reducer = (state = initalState, action) => {
         return {
             ...state,
             score: state.score +10,
+            userPotion: [],
         }
     } else if (type === "WRONG") {
         return {
             ...state,
             score: state.score -5,
+            userPotion: [],
         }
     } else if (type === "LOGIN") {
         return {
@@ -31,7 +33,7 @@ let reducer = (state = initalState, action) => {
     } else if (type === "NEW") {
         return {
             ...state,
-            potion: potion.name,
+            name: potion.name,
             recipe: potion.recipe,
         }
     } else {
