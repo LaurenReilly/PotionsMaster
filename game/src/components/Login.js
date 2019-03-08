@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 class Login extends Component {
@@ -13,22 +13,23 @@ class Login extends Component {
         }
     }
 
-   //send username and password to database
+   //send username and password to database to check if user exists and password matches (change route to users/register for the future registration form)
    handleSubmit(e){
     e.preventDefault();
     axios.post('/users/login', {
         username: this.state.username,
         password: this.state.password
       })
-      .then(function (response) {
+      .then( (response) => {
         this.setState({...this.state, redirect: true});
-        console.log(response);
+        this.props.login(this.state.username);
       })
       .catch(function (error) {
         console.log(error);
       });
-    
+      
     }
+
     //updating state with the input text as it changes
     handleChangeUser(e) {
         this.setState({...this.state, username: e.target.value})
@@ -38,16 +39,12 @@ class Login extends Component {
         this.setState({...this.state, password: e.target.value })
     }
 
-    renderRedirect = () => {
-        if (this.state.redirect) {
-          return <Redirect to='/target' />
-        }
-      }
-
     render() {
+        if (this.state.redirect === true) {
+            return <Redirect to='/game'/>
+        }
         return (
             <div>
-                {this.renderRedirect()}
                 <form onSubmit={(e) => this.handleSubmit(e)}>
                     <label htmlFor="username">Username:</label>
                     <input type="text" id="username" name="username" required
@@ -64,4 +61,16 @@ class Login extends Component {
     }
 }
 
-export default Login;
+let mapStateToProps = (state) => {
+    return {
+      username: state.username,
+    }
+  }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        login: (username) => dispatch({type: "LOGIN", username: username}),
+    }
+}
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Login)
