@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 class Login extends Component {
@@ -22,40 +22,37 @@ class Login extends Component {
       })
       .then( (response) => {
         this.props.login(this.state.username);
-        this.setState({...this.state, redirect: true});
+        this.props.history.push('/rules')
       })
       .catch(function (error) {
         console.log(error);
       });
     }
 
-    handleSubmitRegister(e){
+    handleSubmitRegister = (e) => {
         e.preventDefault();
         axios.post('/users/register', {
             username: this.state.username,
             password: this.state.password
             })
             .then( (response) => {
-            this.props.login(this.state.username);
-            this.setState({...this.state, redirect: true});
+            // this.props.login(this.state.username);
+            this.props.history.push('/rules');
             })
             .catch(function (error) {
             console.log(error);
             });
         }
     //updating state with the input text as it changes
-    handleChangeUser(e) {
+    handleChangeUser = (e) => {
         this.setState({...this.state, username: e.target.value})
     }
 
-    handleChangePass(e) {
+    handleChangePass = (e) => {
         this.setState({...this.state, password: e.target.value })
     }
 
     render() {
-        if (this.state.redirect === true) {
-            return <Redirect to='/rules'/>
-        }
         return (
             <div>
                 <div>
@@ -103,4 +100,4 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
   
-  export default connect(mapStateToProps, mapDispatchToProps)(Login)
+  export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login));

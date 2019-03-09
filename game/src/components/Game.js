@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import Ingredients from './Ingredients';
-import { Redirect, withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -9,32 +8,27 @@ class Game extends Component {
   constructor(props){
     super(props)
     this.state = {
-      redirect: false,
+      username: this.props.username
     }
 
 }
 
-recordScore(){
+recordScore = () => {
   axios.post('/scores/record', {
       username: this.props.username,
-      score: this.props.score
+      points: this.props.score
       })
       .then( (response) => {
       this.props.newGame();
-      this.setState({...this.state, redirect: true});
+      this.props.history.push('/gameover')
       })
       .catch(function (error) {
       console.log(error);
       });
   }
 
+
   render() {
-    //if they lost, go to game over if no one is logged in go to /login
-    if (!this.props.username) {
-      return <Redirect to='/login'/>
-    } else if (this.state.redirect === true) {
-      return <Redirect to='/gameover'/>
-    }
     return (
       <div className="App">
         <p>{this.props.score}</p>
@@ -126,4 +120,4 @@ let mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(withRouter(Game));
+export default connect(mapStateToProps,mapDispatchToProps)(Game);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 let Rules = (props) => {
     return (
@@ -16,4 +16,4 @@ let Rules = (props) => {
     )
 }
 
-export default withRouter(Rules);
+export default Rules;
