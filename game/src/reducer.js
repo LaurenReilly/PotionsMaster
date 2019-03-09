@@ -19,10 +19,10 @@ let reducer = (state = initalState, action) => {
             score: state.score +10,
             userPotion: [],
         }
-    } else if (type === "WRONG") {
+    } else if (type === "NEW_GAME") {
         return {
             ...state,
-            score: state.score -5,
+            score: 0,
             userPotion: [],
         }
     } else if (type === "LOGIN") {
@@ -35,6 +35,13 @@ let reducer = (state = initalState, action) => {
             ...state,
             name: potion.name,
             recipe: potion.recipe,
+        }
+    } else if (type === "LOG_OUT") {
+        return {
+            ...state,
+            username: "",
+            score: 0,
+            userPotion: []
         }
     } else {
         return state;

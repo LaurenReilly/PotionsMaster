@@ -21,28 +21,28 @@ class Login extends Component {
         password: this.state.password
       })
       .then( (response) => {
-        this.setState({...this.state, redirect: true});
         this.props.login(this.state.username);
+        this.setState({...this.state, redirect: true});
       })
       .catch(function (error) {
         console.log(error);
       });
     }
 
-handleSubmitRegister(e){
-    e.preventDefault();
-    axios.post('/users/register', {
-        username: this.state.username,
-        password: this.state.password
-        })
-        .then( (response) => {
-        this.setState({...this.state, redirect: true});
-        this.props.login(this.state.username);
-        })
-        .catch(function (error) {
-        console.log(error);
-        });
-    }
+    handleSubmitRegister(e){
+        e.preventDefault();
+        axios.post('/users/register', {
+            username: this.state.username,
+            password: this.state.password
+            })
+            .then( (response) => {
+            this.props.login(this.state.username);
+            this.setState({...this.state, redirect: true});
+            })
+            .catch(function (error) {
+            console.log(error);
+            });
+        }
     //updating state with the input text as it changes
     handleChangeUser(e) {
         this.setState({...this.state, username: e.target.value})
@@ -54,7 +54,7 @@ handleSubmitRegister(e){
 
     render() {
         if (this.state.redirect === true) {
-            return <Redirect to='/game'/>
+            return <Redirect to='/rules'/>
         }
         return (
             <div>

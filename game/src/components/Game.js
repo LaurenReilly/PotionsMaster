@@ -1,9 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+// import Ingredients from './Ingredients';
+import { Redirect, withRouter } from 'react-router-dom';
+import axios from 'axios';
 
 
 class Game extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      redirect: false,
+    }
+
+}
+
+recordScore(){
+  axios.post('/scores/record', {
+      username: this.props.username,
+      score: this.props.score
+      })
+      .then( (response) => {
+      this.props.newGame();
+      this.setState({...this.state, redirect: true});
+      })
+      .catch(function (error) {
+      console.log(error);
+      });
+  }
+
   render() {
+    //if they lost, go to game over if no one is logged in go to /login
+    if (!this.props.username) {
+      return <Redirect to='/login'/>
+    } else if (this.state.redirect === true) {
+      return <Redirect to='/gameover'/>
+    }
     return (
       <div className="App">
         <p>{this.props.score}</p>
@@ -31,10 +62,10 @@ class Game extends Component {
             this.props.correct();
             this.props.new();
           } else if (status === false) {
-            this.props.wrong();
-            this.props.new();
+            //record score in db, reset score, take user to game over screen
+            this.recordScore();
           } else {
-            this.props.new()
+            this.props.new();
           }
         }
         }>BREW</button>
@@ -90,9 +121,9 @@ let mapDispatchToProps = (dispatch) => {
   return {
     add: (ingredient) => dispatch({type: "ADD", ingredient: ingredient}),
     correct: () => dispatch({type: "CORRECT"}),
-    wrong: () => dispatch({type: "WRONG"}),
+    newGame: () => dispatch({type: "NEW_GAME"}),
     new: () => dispatch({type: "NEW", potion: newPotion()}),
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Game);
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(Game));
