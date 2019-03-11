@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import Ingredients from './Ingredients';
+import Ingredients from './Ingredients';
 import axios from 'axios';
+
 
 
 class Game extends Component {
@@ -35,11 +36,9 @@ recordScore = () => {
         <div>
           <h2>{this.props.name}</h2>
           {this.props.recipe.map((ingredient, i) => {
-            if(i === 0) {
-              return (<p>First add {ingredient}</p>)
-            } else {
-              return (<p>Then add {ingredient}</p>)
-            }
+            return(
+              <Ingredients key={i} i={i} ingredient={ingredient}/>
+            )
           })}
         </div>
         <div>
@@ -71,9 +70,14 @@ recordScore = () => {
 
 //array of all possible potions
 let potions = [
-  {name: "luck", recipe: ["one", "two", "three"]},
-  {name: "poison", recipe: ["three", "four", "five"]},
-  {name: "love", recipe: ["four", "five", "six"]}
+  {name: "Felix Felicis", recipe: ["one", "two", "three"]},
+  {name: "Draught of Living Death", recipe: ["three", "four", "five"]},
+  {name: "Polyjuice", recipe: ["four", "five", "six"]},
+  {name: "Veritaserum", recipe: ["four", "five", "six"]},
+  {name: "Amortentia", recipe: ["four", "five", "six"]},
+  {name: "Pepperup", recipe: ["four", "five", "six"]},
+  {name: "Confusion", recipe: ["four", "five", "six"]},
+  {name: "Invisibility", recipe: ["four", "five", "six"]},
 ]
 
 // functions to return one random potion from the array

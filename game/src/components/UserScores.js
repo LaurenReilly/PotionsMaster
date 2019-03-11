@@ -11,7 +11,9 @@ class UserScores extends Component  {
     }
 
     componentDidMount() {
+        this.getScores();  
        this.getScores();  
+        this.getScores();  
     }
 
     async getScores() {

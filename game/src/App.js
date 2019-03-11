@@ -9,6 +9,10 @@ import HighScores from './components/HighScores';
 import UserScores from './components/UserScores';
 import Logout from './components/Logout';
 
+import './app.css';
+
+// import Sound from 'react-sound';
+
 
 
 class App extends Component {
