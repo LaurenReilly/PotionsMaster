@@ -18,6 +18,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({ secret: 'mymilkshakebringsalltheboystotheyard' }));
 
+app.use(express.static('public'));
+
 
 app.use(passport.initialize());
 app.use(passport.session());

@@ -9,7 +9,8 @@ class Game extends Component {
   constructor(props){
     super(props)
     this.state = {
-      username: this.props.username
+      username: this.props.username,
+      class: "first",
     }
 
 }
@@ -20,7 +21,6 @@ recordScore = () => {
       points: this.props.score
       })
       .then( (response) => {
-      this.props.newGame();
       this.props.history.push('/gameover')
       })
       .catch(function (error) {
@@ -28,6 +28,14 @@ recordScore = () => {
       });
   }
 
+//work around to be able to replay the animation when the new ingredients list renders
+toggleClass = () => {
+  if (this.state.class === "first") {
+    this.setState({...this.state, class: "second"})
+  } else if (this.state.class === "second") {
+    this.setState({...this.state, class: "first"})
+  }
+}
 
   render() {
     return (
@@ -37,7 +45,7 @@ recordScore = () => {
           <h2>{this.props.name}</h2>
           {this.props.recipe.map((ingredient, i) => {
             return(
-              <Ingredients key={i} i={i} ingredient={ingredient}/>
+              <Ingredients class={this.state.class} key={i} i={i} ingredient={ingredient}/>
             )
           })}
         </div>
@@ -53,6 +61,7 @@ recordScore = () => {
           let status = check(this.props.recipe, this.props.userPotion)
           if (status === true ) {
             this.props.correct();
+            this.toggleClass();
             this.props.new();
           } else if (status === false) {
             //record score in db, reset score, take user to game over screen

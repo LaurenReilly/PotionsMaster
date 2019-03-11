@@ -28,6 +28,9 @@ class App extends Component {
           <Route path="/highscores" component={HighScores}/>
           <Route path="/logout" component={Logout}/>
         </Switch>
+        <div>
+          <audio ref="audio_tag" src="theme.mp3" autoPlay/>
+        </div>
       </div>
     );
   }

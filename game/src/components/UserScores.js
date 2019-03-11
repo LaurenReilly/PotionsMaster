@@ -17,7 +17,7 @@ class UserScores extends Component  {
     }
 
     async getScores() {
-        let response = await axios.get(`/scores/${this.props.username}`);
+        let response = await axios.get(`/scores/user/${this.props.username}`);
         console.log(response.data);
         this.setState({
             ...this.state,
