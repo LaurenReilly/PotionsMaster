@@ -1,18 +1,67 @@
 import React, { Component } from 'react';
-import song from './audio/themeSong.mp3';
+import { connect } from 'react-redux';
+
+import crinkle from './audio/crinkle.mp3';
+import drip from './audio/drip.wav';
+import drop from './audio/drop.wav';
+import dust from './audio/dust.wav';
+import seeds from './audio/seeds.wav';
+import sizzle from './audio/sizzle.mp3';
 
 class Audio extends Component {
 
     render() {
-        return (
-            <div>
-                <audio ref="audio_tag" src={song} controls loop autoPlay/>
-            </div>
-          );
+        switch(this.props.currentSound) {
+            case "crinkle":
+                return (
+                    <div>
+                        <audio ref="audio_tag" src={crinkle} autoPlay/>
+                    </div>
+                );
+            case "drip":
+                return (
+                    <div>
+                        <audio ref="audio_tag" src={drip} autoPlay/>
+                    </div>
+                );
+            case "drop":
+                return (
+                    <div>
+                        <audio ref="audio_tag" src={drop} autoPlay/>
+                    </div>
+                );
+            case "dust":
+                return (
+                    <div>
+                        <audio ref="audio_tag" src={dust} autoPlay/>
+                    </div>
+                );
+            case "seeds":
+                return (
+                    <div>
+                        <audio ref="audio_tag" src={seeds} autoPlay/>
+                    </div>
+                );
+            case "sizzle":
+                return (
+                    <div>
+                        <audio ref="audio_tag" src={sizzle} autoPlay/>
+                    </div>
+                );
+            default:
+              return null;
+          }
     }
-
 }
-export default Audio;
+
+let mapStateToProps = (state) => {
+    return {
+        currentSound: state.currentSound
+    }
+  }
+
+  
+  export default connect(mapStateToProps,null)(Audio);
 
 // return (
 //     <Sound

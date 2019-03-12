@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
 class HighScores extends Component  {
@@ -10,8 +11,12 @@ class HighScores extends Component  {
     }
 
     componentDidMount() {
-       this.getScores();  
-    }
+        if(!this.props.username) {
+            this.props.history.push('/');
+        } else {
+            this.getScores();
+        }
+      }
 
     async getScores() {
         let response = await axios.get(`/scores/highscores`);
@@ -37,4 +42,10 @@ class HighScores extends Component  {
     }
 }
 
-export default HighScores;
+let mapStateToProps = (state) => {
+    return {
+      username: state.username,
+    }
+  }
+
+export default connect(mapStateToProps, null)(HighScores);

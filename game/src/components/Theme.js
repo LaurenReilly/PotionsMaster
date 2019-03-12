@@ -28,7 +28,7 @@ import song from './audio/themeSong.mp3';
         this.audio.play()
       }
     }
-  
+
     render() {
       return (
         <div>

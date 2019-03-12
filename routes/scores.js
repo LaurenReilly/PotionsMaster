@@ -44,22 +44,16 @@ router.post('/record', function (req, res, next) {
         })
     } else {
         let points = req.body.points;
-        if (!points) {
-            res.status(400).send({
-                error: "PROVIDE A SCORE TO RECORD"
+        db.one('INSERT INTO scores(points, username) VALUES($1, $2) RETURNING id', [points, req.user.username])
+            .then(data => {
+                console.log
+                console.log(data.id); // print new score id;
+                res.json(data)
             })
-        } else {
-            db.one('INSERT INTO scores(points, username) VALUES($1, $2) RETURNING id', [points, req.user.username])
-                .then(data => {
-                    console.log
-                    console.log(data.id); // print new score id;
-                    res.json(data)
-                })
-                .catch(error => {
-                    console.log('ERROR:', error); // print error;
-                    res.status(400).send(error)
-                });
-        }
+            .catch(error => {
+                console.log('ERROR:', error); // print error;
+                res.status(400).send(error)
+            });
     }
 });
 

@@ -4,13 +4,15 @@ let initalState = {
     username: "",
     score: 0,
     userPotion: [],
+    currentSound: ""
 }
 
 let reducer = (state = initalState, action) => {
-    let {type, ingredient, username, potion} = action;
+    let {type, ingredient, username, potion, currentSound} = action;
     if (type === "ADD") {
         return {
             ...state,
+            currentSound: currentSound,
             userPotion: state.userPotion.concat(ingredient),
         }
     } else if(type === "CORRECT") {

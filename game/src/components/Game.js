@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Ingredients from './Ingredients';
 import axios from 'axios';
 
-
+import Audio from "./Audio"
 
 class Game extends Component {
   constructor(props){
@@ -13,71 +13,76 @@ class Game extends Component {
       class: "first",
     }
 
-}
-
-recordScore = () => {
-  axios.post('/scores/record', {
-      username: this.props.username,
-      points: this.props.score
-      })
-      .then( (response) => {
-      this.props.history.push('/gameover')
-      })
-      .catch(function (error) {
-      console.log(error);
-      });
   }
 
-//work around to be able to replay the animation when the new ingredients list renders
-toggleClass = () => {
-  if (this.state.class === "first") {
-    this.setState({...this.state, class: "second"})
-  } else if (this.state.class === "second") {
-    this.setState({...this.state, class: "first"})
+  recordScore = () => {
+    axios.post('/scores/record', {
+        username: this.props.username,
+        points: this.props.score
+        })
+        .then( (response) => {
+          this.props.history.push('/gameover')
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+
+  //work around to be able to replay the animation when the new ingredients list renders
+  toggleClass = () => {
+    if (this.state.class === "first") {
+      this.setState({...this.state, class: "second"})
+    } else if (this.state.class === "second") {
+      this.setState({...this.state, class: "first"})
+    }
   }
-}
 
   componentDidMount() {
-    this.props.newGame();
+    if(!this.props.username) {
+        this.props.history.push('/')
+    } else {
+        this.props.newGame();
+    }
   }
-  
+    
   render() {
-    return (
-      <div className="App">
-        <p>{this.props.score}</p>
-        <div>
-          <h2>{this.props.name}</h2>
-          {this.props.recipe.map((ingredient, i) => {
-            return(
-              <Ingredients class={this.state.class} key={i} i={i} ingredient={ingredient}/>
-            )
-          })}
-        </div>
-        <div>
-          <button onClick={() => this.props.add("one")}>one</button>
-          <button onClick={() => this.props.add("two")}>two</button>
-          <button onClick={() => this.props.add("three")}>three</button>
-          <button onClick={() => this.props.add("four")}>four</button>
-          <button onClick={() => this.props.add("five")}>five</button>
-          <button onClick={() => this.props.add("six")}>six</button>
-        </div>
-        <button onClick={() => {
-          let status = check(this.props.recipe, this.props.userPotion)
-          if (status === true ) {
-            this.props.correct();
-            this.toggleClass();
-            this.props.new();
-          } else if (status === false) {
-            //record score in db, reset score, take user to game over screen
-            this.recordScore();
-          } else {
-            this.props.new();
+      return (
+        <div className="App">
+          <p>{this.props.score}</p>
+          <div>
+            <h2>{this.props.name}</h2>
+            {this.props.recipe.map((ingredient, i) => {
+              return(
+                <Ingredients class={this.state.class} key={i} i={i} ingredient={ingredient}/>
+              )
+            })}
+          </div>
+          <div>
+            <button onClick={() => this.props.add("one", "crinkle")}>one</button>
+            <button onClick={() => this.props.add("two", "drip")}>two</button>
+            <button onClick={() => this.props.add("three", "drop")}>three</button>
+            <button onClick={() => this.props.add("four", "dust")}>four</button>
+            <button onClick={() => this.props.add("five", "seeds")}>five</button>
+            <button onClick={() => this.props.add("six", "sizzle")}>six</button>
+          </div>
+          <button onClick={() => {
+            let status = check(this.props.recipe, this.props.userPotion)
+            if (status === true ) {
+              this.props.correct();
+              this.toggleClass();
+              this.props.new();
+            } else if (status === false) {
+              //record score in db, reset score, take user to game over screen
+              this.recordScore();
+            } else {
+              this.props.new();
+            }
           }
-        }
-        }>BREW</button>
-      </div>
-    );
-  }
+          }>BREW</button>
+          <Audio/>
+        </div>
+      );
+    }
 }
 
 
@@ -130,7 +135,7 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    add: (ingredient) => dispatch({type: "ADD", ingredient: ingredient}),
+    add: (ingredient, currentSound) => dispatch({type: "ADD", ingredient: ingredient, currentSound: currentSound}),
     correct: () => dispatch({type: "CORRECT"}),
     newGame: () => dispatch({type: "NEW_GAME"}),
     new: () => dispatch({type: "NEW", potion: newPotion()}),

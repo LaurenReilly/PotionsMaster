@@ -11,9 +11,11 @@ class UserScores extends Component  {
     }
 
     componentDidMount() {
-        this.getScores();  
-       this.getScores();  
-        this.getScores();  
+        if(!this.props.username) {
+            this.props.history.push('/')
+        } else {
+            this.getScores(); 
+        }
     }
 
     async getScores() {

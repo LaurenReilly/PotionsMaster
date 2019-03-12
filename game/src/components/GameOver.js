@@ -4,6 +4,14 @@ import { connect } from 'react-redux';
 
 class GameOver extends Component {
 
+    componentDidMount() {
+        if(!this.props.username) {
+            this.props.history.push('/');
+        } else {
+            return
+        }
+      }
+
    scoreRanking = () => {
         const { score } = this.props;
         if (score < 100) {
@@ -30,7 +38,6 @@ class GameOver extends Component {
             </div>
         )
     }
-
 }
 
 let mapStateToProps = (state) => {
