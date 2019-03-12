@@ -37,6 +37,10 @@ toggleClass = () => {
   }
 }
 
+  componentDidMount() {
+    this.props.newGame();
+  }
+  
   render() {
     return (
       <div className="App">

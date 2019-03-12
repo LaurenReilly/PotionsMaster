@@ -8,6 +8,8 @@ import GameOver from './components/GameOver';
 import HighScores from './components/HighScores';
 import UserScores from './components/UserScores';
 import Logout from './components/Logout';
+// import Audio from './components/Audio';
+import Theme from './components/Theme';
 
 import './app.css';
 
@@ -20,7 +22,7 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route path="/login" component={Login}/>
+          <Route exact path="/" component={Login}/>
           <Route path="/rules" component={Rules}/>
           <Route path="/game" component={Game}/>
           <Route path="/gameover" component={GameOver}/>
@@ -28,9 +30,7 @@ class App extends Component {
           <Route path="/highscores" component={HighScores}/>
           <Route path="/logout" component={Logout}/>
         </Switch>
-        <div>
-          <audio ref="audio_tag" src="theme.mp3" autoPlay/>
-        </div>
+        <Theme/>
       </div>
     );
   }
