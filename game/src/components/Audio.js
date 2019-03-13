@@ -10,47 +10,31 @@ import sizzle from './audio/sizzle.mp3';
 
 class Audio extends Component {
 
-    render() {
+    soundSwitch = () => {
         switch(this.props.currentSound) {
             case "crinkle":
-                return (
-                    <div>
-                        <audio ref="audio_tag" src={crinkle} autoPlay onEnded={() => this.props.resetSound()}/>
-                    </div>
-                );
+                return crinkle;
             case "drip":
-                return (
-                    <div>
-                        <audio ref="audio_tag" src={drip} autoPlay onEnded={() => this.props.resetSound()}/>
-                    </div>
-                );
+                return drip;
             case "drop":
-                return (
-                    <div>
-                        <audio ref="audio_tag" src={drop} autoPlay onEnded={() => this.props.resetSound()}/>
-                    </div>
-                );
+                return drop;
             case "dust":
-                return (
-                    <div>
-                        <audio ref="audio_tag" src={dust} autoPlay onEnded={() => this.props.resetSound()}/>
-                    </div>
-                );
+                return dust;
             case "seeds":
-                return (
-                    <div>
-                        <audio ref="audio_tag" src={seeds} autoPlay onEnded={() => this.props.resetSound()}/>
-                    </div>
-                );
+                return seeds;
             case "sizzle":
-                return (
-                    <div>
-                        <audio ref="audio_tag" src={sizzle} autoPlay onEnded={() => this.props.resetSound()}/>
-                    </div>
-                );
+                return sizzle;
             default:
               return null;
           }
+    }
+
+    render() {
+        return (
+            <div>
+                <audio ref="audio_tag" src={this.soundSwitch()} autoPlay onEnded={() => this.props.resetSound()}/>
+            </div>
+        );
     }
 }
 
