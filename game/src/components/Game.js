@@ -15,6 +15,30 @@ class Game extends Component {
 
   }
 
+  potions = [
+    {name: "Felix Felicis", recipe: ["one", "two", "three"]},
+    {name: "Draught of Living Death", recipe: ["three", "four", "five"]},
+    {name: "Polyjuice", recipe: ["four", "five", "six"]},
+    {name: "Veritaserum", recipe: ["four", "five", "six"]},
+    {name: "Amortentia", recipe: ["four", "five", "six"]},
+    {name: "Pepperup", recipe: ["four", "five", "six"]},
+    {name: "Confusion", recipe: ["four", "five", "six"]},
+    {name: "Invisibility", recipe: ["four", "five", "six"]},
+  ]
+
+  // functions to return one random potion from the array
+  random = (max) => {
+    return Math.floor(Math.random() * max);
+  }
+  
+  newPotion = () => {
+    let potion = this.potions[this.random(this.potions.length)]
+    return {
+        name: potion.name,
+        recipe: potion.recipe
+    }
+  }
+
   recordScore = () => {
     axios.post('/scores/record', {
         username: this.props.username,
@@ -36,6 +60,35 @@ class Game extends Component {
       this.setState({...this.state, class: "first"})
     }
   }
+
+  //check if the recipe matches the users potion ingredients
+  check = (arr1, arr2) => {
+    if(arr1.length !== arr2.length){
+      return false;
+    }
+    for(var i = arr1.length; i--;) {
+        if(arr1[i] !== arr2[i])
+            return false;
+    }
+    return true;
+}
+
+
+ brew = () => {
+  let status = this.check(this.props.recipe, this.props.userPotion)
+  if (status === true ) {
+    this.props.correct();
+    this.toggleClass();
+    let potion = this.newPotion();
+    this.props.new(potion);
+  } else if (status === false) {
+    //record score in db, reset score, take user to game over screen
+    this.recordScore();
+  } else {
+    let potion = this.newPotion();
+    this.props.new(potion);
+  }
+}
 
   componentDidMount() {
     if(!this.props.username) {
@@ -65,20 +118,7 @@ class Game extends Component {
             <button onClick={() => this.props.add("five", "seeds")}>five</button>
             <button onClick={() => this.props.add("six", "sizzle")}>six</button>
           </div>
-          <button onClick={() => {
-            let status = check(this.props.recipe, this.props.userPotion)
-            if (status === true ) {
-              this.props.correct();
-              this.toggleClass();
-              this.props.new();
-            } else if (status === false) {
-              //record score in db, reset score, take user to game over screen
-              this.recordScore();
-            } else {
-              this.props.new();
-            }
-          }
-          }>BREW</button>
+          <button onClick={() => this.brew()}>BREW</button>
           <Audio/>
         </div>
       );
@@ -86,42 +126,9 @@ class Game extends Component {
 }
 
 
-//array of all possible potions
-let potions = [
-  {name: "Felix Felicis", recipe: ["one", "two", "three"]},
-  {name: "Draught of Living Death", recipe: ["three", "four", "five"]},
-  {name: "Polyjuice", recipe: ["four", "five", "six"]},
-  {name: "Veritaserum", recipe: ["four", "five", "six"]},
-  {name: "Amortentia", recipe: ["four", "five", "six"]},
-  {name: "Pepperup", recipe: ["four", "five", "six"]},
-  {name: "Confusion", recipe: ["four", "five", "six"]},
-  {name: "Invisibility", recipe: ["four", "five", "six"]},
-]
 
-// functions to return one random potion from the array
-let random = (max) => {
-  return Math.floor(Math.random() * max);
-}
 
-let newPotion = () => {
-  let potion = potions[random(potions.length)]
-  return {
-      name: potion.name,
-      recipe: potion.recipe
-  }
-}
 
-//check if the recipe matches the users potion ingredients
-let check = (arr1, arr2) => {
-    if(arr1.length !== arr2.length){
-      return false;
-    }
-    for(var i = arr1.length; i--;) {
-        if(arr1[i] !== arr2[i])
-            return false;
-    }
-    return true;
-}
 
 let mapStateToProps = (state) => {
   return {
@@ -138,7 +145,7 @@ let mapDispatchToProps = (dispatch) => {
     add: (ingredient, currentSound) => dispatch({type: "ADD", ingredient: ingredient, currentSound: currentSound}),
     correct: () => dispatch({type: "CORRECT"}),
     newGame: () => dispatch({type: "NEW_GAME"}),
-    new: () => dispatch({type: "NEW", potion: newPotion()}),
+    new: (potion) => dispatch({type: "NEW", potion: potion}),
   }
 }
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class GameOver extends Component {
-
+//if there is no user signed in return to home page
     componentDidMount() {
         if(!this.props.username) {
             this.props.history.push('/');
@@ -11,7 +11,7 @@ class GameOver extends Component {
             return
         }
       }
-
+//based on score, assign a ranking
    scoreRanking = () => {
         const { score } = this.props;
         if (score < 100) {

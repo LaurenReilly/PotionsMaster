@@ -26,6 +26,7 @@ let reducer = (state = initalState, action) => {
             ...state,
             score: 0,
             userPotion: [],
+            currentSound: ""
         }
     } else if (type === "LOGIN") {
         return {
@@ -38,11 +39,17 @@ let reducer = (state = initalState, action) => {
             name: potion.name,
             recipe: potion.recipe,
             userPotion: [],
+            currentSound: ""
         }
     } else if (type === "LOG_OUT") {
         return {
             ...state,
             username: "",
+        }
+    } else if (type === "RESET_SOUND") {
+        return {
+            ...state,
+            currentSound: ""
         }
     } else {
         return state;

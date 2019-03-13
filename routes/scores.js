@@ -24,7 +24,7 @@ router.get('/user/:username', function (req, res, next) {
             error: "NO USERNAME PROVIDED"
         })
     } else {
-        db.any('SELECT * FROM scores WHERE username = $1 ORDER BY points DESC', [username])
+        db.any('SELECT * FROM scores WHERE username = $1 ORDER BY points DESC LIMIT 10', [username])
             .then(function (data) {
                 // success;
                 res.json(data);

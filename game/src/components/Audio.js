@@ -15,37 +15,37 @@ class Audio extends Component {
             case "crinkle":
                 return (
                     <div>
-                        <audio ref="audio_tag" src={crinkle} autoPlay/>
+                        <audio ref="audio_tag" src={crinkle} autoPlay onEnded={() => this.props.resetSound()}/>
                     </div>
                 );
             case "drip":
                 return (
                     <div>
-                        <audio ref="audio_tag" src={drip} autoPlay/>
+                        <audio ref="audio_tag" src={drip} autoPlay onEnded={() => this.props.resetSound()}/>
                     </div>
                 );
             case "drop":
                 return (
                     <div>
-                        <audio ref="audio_tag" src={drop} autoPlay/>
+                        <audio ref="audio_tag" src={drop} autoPlay onEnded={() => this.props.resetSound()}/>
                     </div>
                 );
             case "dust":
                 return (
                     <div>
-                        <audio ref="audio_tag" src={dust} autoPlay/>
+                        <audio ref="audio_tag" src={dust} autoPlay onEnded={() => this.props.resetSound()}/>
                     </div>
                 );
             case "seeds":
                 return (
                     <div>
-                        <audio ref="audio_tag" src={seeds} autoPlay/>
+                        <audio ref="audio_tag" src={seeds} autoPlay onEnded={() => this.props.resetSound()}/>
                     </div>
                 );
             case "sizzle":
                 return (
                     <div>
-                        <audio ref="audio_tag" src={sizzle} autoPlay/>
+                        <audio ref="audio_tag" src={sizzle} autoPlay onEnded={() => this.props.resetSound()}/>
                     </div>
                 );
             default:
@@ -60,19 +60,10 @@ let mapStateToProps = (state) => {
     }
   }
 
+let mapDispatchToProps = (dispatch) => {
+    return {
+        resetSound: () => dispatch({type: "RESET_SOUND"})
+    }
+}
   
-  export default connect(mapStateToProps,null)(Audio);
-
-// return (
-//     <Sound
-//       url="/theme.mp3"
-//       playStatus={Sound.status.PLAYING}
-//       playFromPosition={0}
-//       autoLoad={true}
-//       loop={true}
-//     />
-//   );
-
-//<div>
-//<audio ref="audio_tag" src="/themeSong.mp3" loop autoPlay/>
-//</div>
+export default connect(mapStateToProps, mapDispatchToProps)(Audio);
