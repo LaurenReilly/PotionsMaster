@@ -7,6 +7,7 @@ import drop from './audio/drop.wav';
 import dust from './audio/dust.wav';
 import seeds from './audio/seeds.wav';
 import sizzle from './audio/sizzle.mp3';
+import bubbling from './audio/bubbling.wav';
 
 class Audio extends Component {
 
@@ -24,6 +25,8 @@ class Audio extends Component {
                 return seeds;
             case "sizzle":
                 return sizzle;
+            case "bubbling":
+                return bubbling;
             default:
               return null;
           }

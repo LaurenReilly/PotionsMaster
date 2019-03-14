@@ -36,8 +36,7 @@ class Login extends Component {
             password: this.state.password
             })
             .then( (response) => {
-            // this.props.login(this.state.username);
-            this.props.history.push('/rules');
+            this.handleSubmitLogin(e);
             })
             .catch(function (error) {
             console.log(error);

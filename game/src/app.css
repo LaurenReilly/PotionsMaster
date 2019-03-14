@@ -3,6 +3,14 @@ font-family: 'Raleway', sans-serif; */
 
 /* In order to repeat this animation I had to make two separate animations and duplicate classes that I can toggle between in react so that it recongizes that the elements are different */
 
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Griffy', cursive;
+}
+
 /* The animation code */
 @keyframes first {
     0%   {color: rgba(0,0,0,1);}
@@ -44,6 +52,22 @@ font-family: 'Raleway', sans-serif; */
     animation-fill-mode: forwards;
   }
 
+  .ingredientfirst4 {
+    animation-name: first;
+    /* animation-delay: 6s;  */
+    animation-duration: 7s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+
+  .ingredientfirst5 {
+    animation-name: first;
+    /* animation-delay: 6s;  */
+    animation-duration: 7.5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+
 /* toggled classes */
 
   .ingredientsecond1 {
@@ -66,6 +90,22 @@ font-family: 'Raleway', sans-serif; */
     animation-name: second;
     /* animation-delay: 6s;  */
     animation-duration: 6s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+
+  .ingredientsecond4 {
+    animation-name: second;
+    /* animation-delay: 6s;  */
+    animation-duration: 7s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+
+  .ingredientsecond5 {
+    animation-name: second;
+    /* animation-delay: 6s;  */
+    animation-duration: 7.5s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
   }

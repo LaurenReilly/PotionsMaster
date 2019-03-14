@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import Ingredients from './Ingredients';
 import axios from 'axios';
 
+import potions from './potions'
+
 import Audio from "./Audio"
 
 class Game extends Component {
@@ -15,27 +17,17 @@ class Game extends Component {
 
   }
 
-  potions = [
-    {name: "Felix Felicis", recipe: ["one", "two", "three"]},
-    {name: "Draught of Living Death", recipe: ["three", "four", "five"]},
-    {name: "Polyjuice", recipe: ["four", "five", "six"]},
-    {name: "Veritaserum", recipe: ["four", "five", "six"]},
-    {name: "Amortentia", recipe: ["four", "five", "six"]},
-    {name: "Pepperup", recipe: ["four", "five", "six"]},
-    {name: "Confusion", recipe: ["four", "five", "six"]},
-    {name: "Invisibility", recipe: ["four", "five", "six"]},
-  ]
-
   // functions to return one random potion from the array
   random = (max) => {
     return Math.floor(Math.random() * max);
   }
   
   newPotion = () => {
-    let potion = this.potions[this.random(this.potions.length)]
+    let potion = potions[this.random(potions.length)]
     return {
         name: potion.name,
-        recipe: potion.recipe
+        recipe: potion.recipe,
+        insult: potion.insult
     }
   }
 
@@ -103,7 +95,8 @@ class Game extends Component {
         <div className="App">
           <p>{this.props.score}</p>
           <div>
-            <h2>{this.props.name}</h2>
+            <h2>{this.props.insult}</h2>
+            <h3>{this.props.name}</h3>
             {this.props.recipe.map((ingredient, i) => {
               return(
                 <Ingredients class={this.state.class} key={i} i={i} ingredient={ingredient}/>
@@ -111,12 +104,12 @@ class Game extends Component {
             })}
           </div>
           <div>
-            <button onClick={() => this.props.add("one", "crinkle")}>one</button>
-            <button onClick={() => this.props.add("two", "drip")}>two</button>
-            <button onClick={() => this.props.add("three", "drop")}>three</button>
-            <button onClick={() => this.props.add("four", "dust")}>four</button>
-            <button onClick={() => this.props.add("five", "seeds")}>five</button>
-            <button onClick={() => this.props.add("six", "sizzle")}>six</button>
+            <button onClick={() => this.props.add("a lacewing fly", "crinkle")}>lacewing</button>
+            <button onClick={() => this.props.add("a drop of dragon blood", "drip")}>dragon blood</button>
+            <button onClick={() => this.props.add("an eye of newt", "drop")}>eye of newt</button>
+            <button onClick={() => this.props.add("powdered bicorn horn", "dust")}>powdered bicorn horn</button>
+            <button onClick={() => this.props.add("beetle eyes", "seeds")}>beetle eyes</button>
+            <button onClick={() => this.props.add("boomslang skin", "sizzle")}>boomslang skin</button>
           </div>
           <button onClick={() => this.brew()}>BREW</button>
           <Audio/>
@@ -134,6 +127,7 @@ let mapStateToProps = (state) => {
   return {
     name: state.name,
     recipe: state.recipe,
+    insult: state.insult,
     username: state.username,
     score: state.score,
     userPotion: state.userPotion,
@@ -145,7 +139,7 @@ let mapDispatchToProps = (dispatch) => {
     add: (ingredient, currentSound) => dispatch({type: "ADD", ingredient: ingredient, currentSound: currentSound}),
     correct: () => dispatch({type: "CORRECT"}),
     newGame: () => dispatch({type: "NEW_GAME"}),
-    new: (potion) => dispatch({type: "NEW", potion: potion}),
+    new: (potion) => dispatch({type: "NEW", potion: potion, currentSound: "bubbling"}),
   }
 }
 

@@ -1,6 +1,7 @@
 let initalState = {
     name: "Cure For Boils",
-    recipe: ["one", "two", "three"],
+    recipe: ["powdered bicorn horn", "a drop of dragon blood", "an eye of newt"],
+    insult: "There will be no silly wand waving or foolish incantations in this class!",
     username: "",
     score: 0,
     userPotion: [],
@@ -38,8 +39,9 @@ let reducer = (state = initalState, action) => {
             ...state,
             name: potion.name,
             recipe: potion.recipe,
+            insult: potion.insult,
             userPotion: [],
-            currentSound: ""
+            currentSound: currentSound
         }
     } else if (type === "LOG_OUT") {
         return {

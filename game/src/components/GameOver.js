@@ -14,15 +14,15 @@ class GameOver extends Component {
 //based on score, assign a ranking
    scoreRanking = () => {
         const { score } = this.props;
-        if (score < 100) {
+        if (score < 50) {
             return "Neville Longbottom"
-        } else if (score > 100 && score < 500) {
+        } else if (score > 50 && score < 70) {
             return "Draco Malfoy"
-        } else if (score > 500 && score < 1000) {
+        } else if (score > 70 && score < 90) {
             return "Horace Slughorn"
-        } else if (score > 1000 && score < 1500) {
+        } else if (score > 90 && score < 110) {
             return "Hermione Granger"
-        } else if (score > 1500) {
+        } else if (score > 110) {
             return "Half Blood Prince"
         }
     }
