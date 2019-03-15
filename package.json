@@ -6,6 +6,9 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.15",
+    "@fortawesome/free-solid-svg-icons": "^5.7.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
@@ -13,8 +16,10 @@
     "express": "~4.16.0",
     "express-session": "^1.15.6",
     "http-errors": "~1.6.2",
+    "i": "^0.3.6",
     "jade": "~1.11.0",
     "morgan": "~1.9.0",
+    "npm": "^6.9.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pg-promise": "^8.5.6"

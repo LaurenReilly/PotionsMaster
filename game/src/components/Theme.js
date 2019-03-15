@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import song from './audio/themeSong.mp3';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
   class Theme extends Component {
     constructor(props) {
@@ -31,16 +32,16 @@ import song from './audio/themeSong.mp3';
 
     render() {
       return (
-        <div>
-          <button
-            id="audioBtn"
-            onClick={this.togglePlay}> {this.state.play ? "Pause" : "Play"}
-          </button>
+        <div className="align-self-start">
+          <FontAwesomeIcon 
+            id="music" 
+            onClick={this.togglePlay} 
+            icon={this.state.play ? "pause" : "music"} 
+            size="2x" alt="theme" title="theme"/>
         </div>
       );
     }
   }
-
 
   export default Theme;
 

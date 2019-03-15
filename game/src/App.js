@@ -8,10 +8,17 @@ import GameOver from './components/GameOver';
 import HighScores from './components/HighScores';
 import UserScores from './components/UserScores';
 import Logout from './components/Logout';
-// import Audio from './components/Audio';
 import Theme from './components/Theme';
 
 import './app.css';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+
+import { faDungeon, faMusic, faPause } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faDungeon, faMusic, faPause);
+
+
 
 // import Sound from 'react-sound';
 
@@ -30,7 +37,10 @@ class App extends Component {
           <Route path="/highscores" component={HighScores}/>
           <Route path="/logout" component={Logout}/>
         </Switch>
-        <Theme/>
+        <div className="footer">
+          <Theme/>
+          <p className="text-center">Copyright 2019 by WitchScript</p>
+        </div>
       </div>
     );
   }

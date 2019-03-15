@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 class Logout extends Component {
 
     handleClick = (e) => {
@@ -19,8 +19,8 @@ class Logout extends Component {
 
     render() {
         return (
-            <div className="mt-5">
-                <button onClick={(e) => this.handleClick(e)}>Logout</button>
+            <div className="mt-5 mb-1">
+                <FontAwesomeIcon id="dungeon" onClick={(e) => this.handleClick(e)} icon="dungeon" size="3x" alt="Logout" title="Logout"/>
             </div>
         )
     }

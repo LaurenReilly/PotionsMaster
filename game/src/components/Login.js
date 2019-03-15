@@ -64,36 +64,38 @@ class Login extends Component {
                             <p>Your task is to brew up as many perfect potions as you can while doing your best to not let Snape...er...<i>Professor</i> Snape distract you with his insults.</p>
                             <p>Professor Snape does not tolerate imperfection, one misstep and it's back to your common room!</p>
                         </div>
-                        <div className="login">
-                            <div className="m-auto">
-                                <h4 className="text-center">RETURNING USER:</h4>
-                                <form className="d-flex flex-row" onSubmit={(e) => this.handleSubmitLogin(e)}>
-                                    <label className="mx-1" htmlFor="username">Username:</label>
-                                    <input className="rounded" style={{}}type="text" id="username" name="username" required
+                        <div className="forms d-flex flex-column">
+                            <div className="login">
+                                <div className="m-auto">
+                                    <h4 className="text-center">RETURNING USER:</h4>
+                                    <form className="d-flex flex-row" onSubmit={(e) => this.handleSubmitLogin(e)}>
+                                        <label className="mx-1" htmlFor="username">Username:</label>
+                                        <input className="rounded" style={{}}type="text" id="username" name="username" required
+                                            onChange={(e) => this.handleChangeUser(e)} 
+                                            value={this.state.username}></input>
+                                        <label className="mx-1" htmlFor="password">Password:</label>
+                                        <input className="rounded" type="password" id="password"  name="password" required
+                                            onChange={(e) => this.handleChangePass(e)} 
+                                            value={this.state.password}></input>
+                                        <input className="rounded ml-1" type="submit" value="Login"></input>
+                                    </form>
+                                </div>
+                            </div>
+                            <div className="register align-self-center mt-3">
+                                <h4 className="text-center">NEW USER REGISTRATION:</h4>
+                                <form className="d-flex flex-column"onSubmit={(e) => this.handleSubmitRegister(e)}>
+                                    <label className="mx-1" htmlFor="newUsername">Username:</label>
+                                    <input className="rounded" type="text" id="newUsername" name="username" required
                                         onChange={(e) => this.handleChangeUser(e)} 
                                         value={this.state.username}></input>
-                                    <label className="mx-1" htmlFor="password">Password:</label>
-                                    <input className="rounded" type="password" id="password"  name="password" required
+                                    <label className="mx-1 mt-3" htmlFor="newPassword">Password:</label>
+                                    <input className="rounded" type="password" id="newPassword"  name="password" required
                                         onChange={(e) => this.handleChangePass(e)} 
                                         value={this.state.password}></input>
-                                    <input className="rounded mx-2" type="submit" value="Login"></input>
+                                    <input className="rounded align-self-center mt-2" type="submit" value="Register"></input>
                                 </form>
                             </div>
                         </div>
-                    </div>
-                    <div className="register">
-                        <h4 className="text-center">NEW USER REGISTRATION:</h4>
-                        <form onSubmit={(e) => this.handleSubmitRegister(e)}>
-                            <label className="mx-1 my-4" htmlFor="newUsername">Username:</label>
-                            <input className="rounded" type="text" id="newUsername" name="username" required
-                                onChange={(e) => this.handleChangeUser(e)} 
-                                value={this.state.username}></input>
-                            <label className="mx-1" htmlFor="newPassword">Password:</label>
-                            <input className="rounded" type="password" id="newPassword"  name="password" required
-                                onChange={(e) => this.handleChangePass(e)} 
-                                value={this.state.password}></input>
-                            <input className="rounded align-self-center" type="submit" value="Register"></input>
-                        </form>
                     </div>
                 </div>
             </div>

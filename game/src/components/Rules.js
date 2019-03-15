@@ -26,22 +26,44 @@ class Rules extends Component {
         return (
             <div>
                 <Header/>
-                <h4>Rules:</h4>
-                <ul>
-                    <li>Follow Snape's instructions exactly!</li>
-                    <li>Work quickly before he erases the board.</li>
-                    <li>Try not to get distracted by his insults.</li>
-                </ul>
-                <div className="images d-flex flex-wrap" style={{width:600, height:700}}>
-                <img src={cauldron} alt="Severus Snape" style={{width: 200, height: 200}}/>
-                <img src={dragon} alt="Severus Snape" style={{width: 200, height: 200}}/>
-                <img src={lacewing} alt="Severus Snape" style={{width: 200, height: 200}}/>
-                <img src={bicorn} alt="Severus Snape" style={{width: 200, height: 200}}/>
-                <img src={beetle} alt="Severus Snape" style={{width: 200, height: 200}}/>
-                <img src={newt} alt="Severus Snape" style={{width: 200, height: 200}}/>
-                <img src={boomslang} alt="Severus Snape" style={{width: 200, height: 200}}/>
+                <div className="d-flex flex-row justify-content-between mx-5 mt-4">
+                    <div>
+                        <h4>Rules:</h4>
+                        <ul>
+                            <li>Follow Snape's instructions exactly!</li>
+                            <li>Work quickly before he erases the board.</li>
+                            <li>Try not to get distracted by his insults.</li>
+                        </ul>
+                        <img src={cauldron} alt="cauldron" style={{width: 200, height: 200}}/>
+                    </div>
+                    <div className="images d-flex flex-wrap" style={{width:400, height:400}}>
+                        <div className="m-2">
+                            <p className="text-center">Dragon Blood</p>
+                            <img src={dragon} alt="dragon blood" style={{width: 100, height: 100}}/>
+                        </div>
+                        <div className="m-2">
+                            <p className="text-center">Lacewing Fly</p>
+                            <img src={lacewing} alt="lacewing fly" style={{width: 100, height: 100}}/>
+                        </div>
+                        <div className="m-2">
+                            <p className="text-center">Bicorn Horn</p>
+                            <img src={bicorn} alt="bicorn horn" style={{width: 100, height: 100}}/>
+                        </div>
+                        <div className="m-2">
+                            <p className="text-center">Beetle Eyes</p>
+                            <img src={beetle} alt="beetle" style={{width: 100, height: 100}}/>
+                        </div>
+                        <div className="m-2">
+                            <p className="text-center">Eye of Newt</p>
+                            <img src={newt} alt="newt" style={{width: 100, height: 100}}/>
+                        </div>
+                        <div className="m-2">
+                            <p className="text-center">Boomslang Skin</p>
+                            <img src={boomslang} alt="boomslang" style={{width: 100, height: 100}}/>
+                        </div>
+                    </div>
                 </div>
-                <h2 onClick={() => this.handleClick()}>Lets Brew Some Potions!</h2>
+                <h2 id="play" onClick={() => this.handleClick()}>Lets Brew Some Potions!</h2>
             </div>
         )
     }

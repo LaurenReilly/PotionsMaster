@@ -5,7 +5,7 @@ let initalState = {
     username: "",
     score: 0,
     userPotion: [],
-    currentSound: ""
+    currentSound: "",
 }
 
 let reducer = (state = initalState, action) => {

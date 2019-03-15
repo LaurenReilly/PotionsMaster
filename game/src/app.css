@@ -4,13 +4,13 @@ font-family: 'Raleway', sans-serif; */
 :root {
 --lightGreen: #539c2e;
 --darkGreen: #1d3c0e;
---lightGray: #252525;	
---darkGray: #232721;
+--darkGray: #252525;	
+--lightGray: #747474;
 }
 
 body {
   font-family: 'Raleway', sans-serif;
-  background-color: var(--lightGray);
+  background-color: var(--darkGray);
   color: white;
 }
 
@@ -34,17 +34,44 @@ h1, h2, h3, h4, h5, h6 {
 .login {
   border: 5px solid var(--darkGreen);
   border-radius: 5px;
-  width: 650px;
+  width: 38em;
   height: 6em;
   padding: .5em;
+  box-shadow: 3px 3px 3px black;
 }
 
 .register{
-  border: 5px solid var(--darkGreen);
+  border: 5px solid var(--lightGreen);
+  background-color: var(--lightGray);
   border-radius: 5px;
   width: 400px;
   height: 300px;
   padding: 2em;
+  box-shadow: 3px 3px 3px black;
+}
+
+.register input, .login input {
+  color: var(--darkGreen);
+  border: 3px solid var(--lightGreen);
+}
+
+#dungeon:hover {
+  color: var(--lightGray);
+}
+
+#music:hover {
+  color: var(--lightGreen);
+}
+
+#play:hover {
+  color: white;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 80%;
+  height: 60px;
 }
 
 /* The animation code */
