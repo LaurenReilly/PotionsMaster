@@ -29,22 +29,34 @@ class HighScores extends Component  {
     }
 
     handleClick(page) {
-        this.props.history.push({page})
+        this.props.history.push(page);
     }
 
     render() {
         return (
-            <div>
+            <div className="mt-5">
             <Header/>
                 {this.state.highScores.map((record, i) => {
-                    return (
-                        <div key={i}>
-                            <p>{record.username} scored {record.points}</p>
-                        </div>
-                    )
-                }) }
-            <h2 onClick={() => this.handleClick('/userscores')}>View Your Best Scores</h2>
-            <h2 onClick={() => this.handleClick('/game')}>Play Again</h2>
+                        if (i === 0) {
+                            return (
+                                <div key={i} className="m-5">
+                                    <h3>{record.username} has the high score of {record.points}</h3>
+                                </div>
+                            )
+                        } else {
+                            return (
+                                <div key={i} className="d-flex flex-row">
+                                    <h4>{record.username}</h4>
+                                    <p>scored {record.points} for their house</p>
+                                </div>
+                            )
+                        }
+                    }) 
+                }
+                <div className="d-flex justify-content-around mt-5">
+                    <h4 className="newPage" onClick={() => this.handleClick('/userscores')}>View Your Best Scores</h4>
+                    <h4 className="newPage" onClick={() => this.handleClick('/game')}>Play Again</h4>
+                </div>
             </div>
         )
     }

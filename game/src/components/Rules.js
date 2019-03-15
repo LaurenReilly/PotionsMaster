@@ -34,36 +34,42 @@ class Rules extends Component {
                             <li>Work quickly before he erases the board.</li>
                             <li>Try not to get distracted by his insults.</li>
                         </ul>
-                        <img src={cauldron} alt="cauldron" style={{width: 200, height: 200}}/>
+                        <img 
+                            onClick={() => this.handleClick()} 
+                            className="images mt-5 ml-5 mb-2" src={cauldron} 
+                            alt="cauldron" style={{width: 200, height: 200}}/>
+                        <h2>Lets Brew Some Potions!</h2>
                     </div>
-                    <div className="images d-flex flex-wrap" style={{width:400, height:400}}>
-                        <div className="m-2">
-                            <p className="text-center">Dragon Blood</p>
-                            <img src={dragon} alt="dragon blood" style={{width: 100, height: 100}}/>
-                        </div>
-                        <div className="m-2">
-                            <p className="text-center">Lacewing Fly</p>
-                            <img src={lacewing} alt="lacewing fly" style={{width: 100, height: 100}}/>
-                        </div>
-                        <div className="m-2">
-                            <p className="text-center">Bicorn Horn</p>
-                            <img src={bicorn} alt="bicorn horn" style={{width: 100, height: 100}}/>
-                        </div>
-                        <div className="m-2">
-                            <p className="text-center">Beetle Eyes</p>
-                            <img src={beetle} alt="beetle" style={{width: 100, height: 100}}/>
-                        </div>
-                        <div className="m-2">
-                            <p className="text-center">Eye of Newt</p>
-                            <img src={newt} alt="newt" style={{width: 100, height: 100}}/>
-                        </div>
-                        <div className="m-2">
-                            <p className="text-center">Boomslang Skin</p>
-                            <img src={boomslang} alt="boomslang" style={{width: 100, height: 100}}/>
+                    <div>
+                        <h3 className="text-center">Ingredients</h3>
+                        <div className="d-flex flex-wrap" style={{width:400, height:400}}>
+                            <div className="m-2">
+                                <p className="text-center">Dragon Blood</p>
+                                <img className="images" src={dragon} alt="dragon blood" style={{width: 100, height: 100}}/>
+                            </div>
+                            <div className="m-2">
+                                <p className="text-center">Lacewing Fly</p>
+                                <img className="images" src={lacewing} alt="lacewing fly" style={{width: 100, height: 100}}/>
+                            </div>
+                            <div className="m-2">
+                                <p className="text-center">Bicorn Horn</p>
+                                <img className="images" src={bicorn} alt="bicorn horn" style={{width: 100, height: 100}}/>
+                            </div>
+                            <div className="m-2">
+                                <p className="text-center">Beetle Eyes</p>
+                                <img className="images" src={beetle} alt="beetle" style={{width: 100, height: 100}}/>
+                            </div>
+                            <div className="m-2">
+                                <p className="text-center">Eye of Newt</p>
+                                <img className="images" src={newt} alt="newt" style={{width: 100, height: 100}}/>
+                            </div>
+                            <div className="m-2">
+                                <p className="text-center">Boomslang Skin</p>
+                                <img className="images" src={boomslang} alt="boomslang" style={{width: 100, height: 100}}/>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <h2 id="play" onClick={() => this.handleClick()}>Lets Brew Some Potions!</h2>
             </div>
         )
     }

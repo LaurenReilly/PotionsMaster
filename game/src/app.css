@@ -6,6 +6,8 @@ font-family: 'Raleway', sans-serif; */
 --darkGreen: #1d3c0e;
 --darkGray: #252525;	
 --lightGray: #747474;
+--parchment: #cab87a;
+--parchmentDark: #898a53;
 }
 
 body {
@@ -55,6 +57,14 @@ h1, h2, h3, h4, h5, h6 {
   border: 3px solid var(--lightGreen);
 }
 
+.images:hover, #dungeon:hover, #music:hover, .newPage:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.images:active, #dungeon:active, #music:active, .newPage:active {
+  transform: scale(.9, .9);
+}
+
 #dungeon:hover {
   color: var(--lightGray);
 }
@@ -63,7 +73,33 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--lightGreen);
 }
 
-#play:hover {
+.newPage:hover {
+  color: white;
+}
+
+.recipe > h4 {
+  font-size: 2em;
+}
+
+.recipe {
+  /* background-color: var(--parchment); */
+  background: #f1d3a1; /* Old browsers */
+  background: -moz-linear-gradient(top, #f1d3a1 0%, #8f744a 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #f1d3a1 0%,#8f744a 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #f1d3a1 0%,#8f744a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1d3a1', endColorstr='#8f744a',GradientType=0 );
+  border: 5px solid var(--parchmentDark);
+  border-radius: 5px;
+  width: 350px;
+  height: 400px;
+}
+
+.score {
+  color: white;
+  font-size: 3em;
+}
+
+.gameOver {
   color: white;
 }
 
@@ -94,35 +130,49 @@ h1, h2, h3, h4, h5, h6 {
 /* In order to repeat this animation I had to make two separate animations and duplicate classes that I can toggle between in react so that it recongizes that the elements are different */
   .ingredientfirst1 {
     animation-name: first;
-    animation-duration: 4s;
+    animation-duration: 3s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
   }
 
   .ingredientfirst2 {
     animation-name: first;
-    animation-duration: 5s;
+    animation-duration: 4s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
   }
 
   .ingredientfirst3 {
     animation-name: first;
-    animation-duration: 6s;
+    animation-duration: 5s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
   }
 
   .ingredientfirst4 {
     animation-name: first;
-    animation-duration: 7s;
+    animation-duration: 6s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
   }
 
   .ingredientfirst5 {
     animation-name: first;
-    animation-duration: 7.5s;
+    animation-duration: 7s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+
+  .ingredientfirst6 {
+    animation-name: first;
+    animation-duration: 8s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+
+  .ingredientfirst7 {
+    animation-name: first;
+    animation-duration: 9s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
   }
@@ -131,35 +181,47 @@ h1, h2, h3, h4, h5, h6 {
 
   .ingredientsecond1 {
     animation-name: second;
-    animation-duration: 4s;
+    animation-duration: 3s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
   }
 
   .ingredientsecond2 {
     animation-name: second;
-    animation-duration: 5s;
+    animation-duration: 4s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
   }
 
   .ingredientsecond3 {
     animation-name: second;
-    animation-duration: 6s;
+    animation-duration: 5s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
   }
 
   .ingredientsecond4 {
     animation-name: second;
-    animation-duration: 7s;
+    animation-duration: 6s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
   }
 
   .ingredientsecond5 {
     animation-name: second;
-    animation-duration: 7.5s;
+    animation-duration: 7s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+  .ingredientsecond6 {
+    animation-name: second;
+    animation-duration: 8s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+  .ingredientsecond7 {
+    animation-name: second;
+    animation-duration: 9s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
   }

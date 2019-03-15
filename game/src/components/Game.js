@@ -4,8 +4,17 @@ import Ingredients from './Ingredients';
 import axios from 'axios';
 
 import potions from './potions'
+import snape from './audio/snape.png';
 
 import Audio from "./Audio"
+
+import cauldron from './audio/cauldron.png';
+import lacewing from './audio/lacewing.png';
+import boomslang from './audio/boomslang.png';
+import bicorn from './audio/bicorn.png';
+import dragon from './audio/dragon.png';
+import beetle from './audio/beetle.png';
+import newt from './audio/newt.png';
 
 class Game extends Component {
   constructor(props){
@@ -92,32 +101,85 @@ class Game extends Component {
     
   render() {
       return (
-        <div className="App">
-          <p>{this.props.score}</p>
-          <div>
-            <h2>{this.props.insult}</h2>
-            <h3>{this.props.name}</h3>
-            {this.props.recipe.map((ingredient, i) => {
-              return(
-                <Ingredients class={this.state.class} key={i} i={i} ingredient={ingredient}/>
-              )
-            })}
+        <div className="d-flex flex-column mt-3">
+          <div className="snapesInstructions d-flex justify-content-between">
+            <div className="d-flex flex-row no-wrap ml-1">
+              <img src={snape} alt="Severus Snape" style={{width: 200, height: 200}}/>
+              <h3 className="align-self-center">{this.props.insult}</h3>
+            </div>
+            <div className="mt-5">
+              <h2 className="score" >Score:</h2>
+              <h2 className="score text-center">{this.props.score}</h2>
+            </div>
           </div>
-          <div>
-            <button onClick={() => this.props.add("a lacewing fly", "crinkle")}>lacewing</button>
-            <button onClick={() => this.props.add("a drop of dragon blood", "drip")}>dragon blood</button>
-            <button onClick={() => this.props.add("an eye of newt", "drop")}>eye of newt</button>
-            <button onClick={() => this.props.add("powdered bicorn horn", "dust")}>powdered bicorn horn</button>
-            <button onClick={() => this.props.add("beetle eyes", "seeds")}>beetle eyes</button>
-            <button onClick={() => this.props.add("boomslang skin", "sizzle")}>boomslang skin</button>
+          <div id="recipeAndIngredients" className="d-flex justify-content-between">
+            <div className="recipe">
+              <h4 className="text-center">{this.props.name}</h4>
+              {this.props.recipe.map((ingredient, i) => {
+                return(
+                  <Ingredients class={this.state.class} key={i} i={i} ingredient={ingredient}/>
+                )
+              })}
+            </div>        
+            <div className="d-flex flex-wrap" style={{width: 400, height:470}}>
+              <div className="ml-5 mr-3 gameIngredient">
+                  <img
+                    className="images"
+                    onClick={() => this.props.add("a drop of dragon blood", "drip")} 
+                    src={dragon} alt="dragon blood" style={{width: 150, height: 150}}/>
+              </div>
+              <div className="mx-3 gameIngredient">
+                  <img 
+                    className="images"
+                    onClick={() => this.props.add("a lacewing fly", "crinkle")} 
+                    src={lacewing} alt="lacewing fly" style={{width: 150, height: 150}}/>
+              </div>
+              <div className="ml-5 mr-3  gameIngredient">
+                  <img 
+                    className="images"
+                    onClick={() => this.props.add("powdered bicorn horn", "dust")} 
+                    src={bicorn} alt="bicorn horn" style={{width: 150, height: 150}}/>
+              </div>
+              <div className="mx-3 gameIngredient">
+                  <img 
+                    className="images"
+                    onClick={() => this.props.add("beetle eyes", "seeds")} 
+                    src={beetle} alt="beetle" style={{width: 150, height: 150}}/>
+              </div>
+              <div className="ml-5 mr-3  gameIngredient">
+                  <img
+                    className="images" 
+                    onClick={() => this.props.add("an eye of newt", "drop")}
+                    src={newt} alt="newt" style={{width: 150, height: 150}}/>
+              </div>
+              <div className="mx-3 gameIngredient">
+                  <img 
+                    className="images"
+                    onClick={() => this.props.add("boomslang skin", "sizzle")}
+                    src={boomslang} alt="boomslang" style={{width: 150, height: 150}}/>
+              </div>
+            </div>
+            <img 
+                className="images align-self-center"
+                onClick={() => this.brew()}
+                src={cauldron} alt="cauldron" style={{width: 200, height: 200}}/>
           </div>
-          <button onClick={() => this.brew()}>BREW</button>
           <Audio/>
         </div>
       );
     }
 }
 
+
+/* <div>
+<button onClick={() => this.props.add("a lacewing fly", "crinkle")}>lacewing</button>
+<button onClick={() => this.props.add("a drop of dragon blood", "drip")}>dragon blood</button>
+<button onClick={() => this.props.add("an eye of newt", "drop")}>eye of newt</button>
+<button onClick={() => this.props.add("powdered bicorn horn", "dust")}>powdered bicorn horn</button>
+<button onClick={() => this.props.add("beetle eyes", "seeds")}>beetle eyes</button>
+<button onClick={() => this.props.add("boomslang skin", "sizzle")}>boomslang skin</button>
+</div>
+          <button onClick={() => this.brew()}>BREW</button> */
 
 
 
