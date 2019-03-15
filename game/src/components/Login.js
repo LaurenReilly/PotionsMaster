@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import Header from './Header';
 
 class Login extends Component {
     constructor(props) {
@@ -54,33 +55,46 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <h2>RETURNING USER:</h2>
-                    <form onSubmit={(e) => this.handleSubmitLogin(e)}>
-                        <label htmlFor="username">Username:</label>
-                        <input type="text" id="username" name="username" required
-                            onChange={(e) => this.handleChangeUser(e)} 
-                            value={this.state.username}></input>
-                        <label htmlFor="password">Password:</label>
-                        <input type="password" id="password"  name="password" required
-                            onChange={(e) => this.handleChangePass(e)} 
-                            value={this.state.password}></input>
-                        <input type="submit" value="Submit"></input>
-                    </form>
-                </div>
-                <div>
-                    <h2>NEW USER REGISTRATION:</h2>
-                    <form onSubmit={(e) => this.handleSubmitRegister(e)}>
-                        <label htmlFor="newUsername">Username:</label>
-                        <input type="text" id="newUsername" name="username" required
-                            onChange={(e) => this.handleChangeUser(e)} 
-                            value={this.state.username}></input>
-                        <label htmlFor="newPassword">Password:</label>
-                        <input type="password" id="newPassword"  name="password" required
-                            onChange={(e) => this.handleChangePass(e)} 
-                            value={this.state.password}></input>
-                        <input type="submit" value="Submit"></input>
-                    </form>
+                <Header/>
+                <div className="mt-4">
+                    <div className="d-flex flex-row align-content-between">
+                        <div className="intro">
+                            <h3>Professor Snape thinks you're bad enough at potions that hes willing to teach you one on one!</h3>
+                            <p>Well, actually he's not willing at all. He's doing this as a favor for Dumbledore.</p>
+                            <p>Your task is to brew up as many perfect potions as you can while doing your best to not let Snape...er...<i>Professor</i> Snape distract you with his insults.</p>
+                            <p>Professor Snape does not tolerate imperfection, one misstep and it's back to your common room!</p>
+                        </div>
+                        <div className="login">
+                            <div className="m-auto">
+                                <h4 className="text-center">RETURNING USER:</h4>
+                                <form className="d-flex flex-row" onSubmit={(e) => this.handleSubmitLogin(e)}>
+                                    <label className="mx-1" htmlFor="username">Username:</label>
+                                    <input className="rounded" style={{}}type="text" id="username" name="username" required
+                                        onChange={(e) => this.handleChangeUser(e)} 
+                                        value={this.state.username}></input>
+                                    <label className="mx-1" htmlFor="password">Password:</label>
+                                    <input className="rounded" type="password" id="password"  name="password" required
+                                        onChange={(e) => this.handleChangePass(e)} 
+                                        value={this.state.password}></input>
+                                    <input className="rounded mx-2" type="submit" value="Login"></input>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="register">
+                        <h4 className="text-center">NEW USER REGISTRATION:</h4>
+                        <form onSubmit={(e) => this.handleSubmitRegister(e)}>
+                            <label className="mx-1 my-4" htmlFor="newUsername">Username:</label>
+                            <input className="rounded" type="text" id="newUsername" name="username" required
+                                onChange={(e) => this.handleChangeUser(e)} 
+                                value={this.state.username}></input>
+                            <label className="mx-1" htmlFor="newPassword">Password:</label>
+                            <input className="rounded" type="password" id="newPassword"  name="password" required
+                                onChange={(e) => this.handleChangePass(e)} 
+                                value={this.state.password}></input>
+                            <input className="rounded align-self-center" type="submit" value="Register"></input>
+                        </form>
+                    </div>
                 </div>
             </div>
         )
@@ -99,4 +113,4 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
   
-  export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login));

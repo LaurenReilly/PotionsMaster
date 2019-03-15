@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import Header from './Header';
 
 class HighScores extends Component  {
     constructor(props) {
@@ -27,9 +28,14 @@ class HighScores extends Component  {
         })
     }
 
+    handleClick(page) {
+        this.props.history.push({page})
+    }
+
     render() {
         return (
             <div>
+            <Header/>
                 {this.state.highScores.map((record, i) => {
                     return (
                         <div key={i}>
@@ -37,6 +43,8 @@ class HighScores extends Component  {
                         </div>
                     )
                 }) }
+            <h2 onClick={() => this.handleClick('/userscores')}>View Your Best Scores</h2>
+            <h2 onClick={() => this.handleClick('/game')}>Play Again</h2>
             </div>
         )
     }

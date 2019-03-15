@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Header from './Header';
 
 class GameOver extends Component {
 //if there is no user signed in return to home page
@@ -27,14 +27,20 @@ class GameOver extends Component {
         }
     }
 
+    handleClick(page) {
+        this.props.history.push({page})
+    }
+
     render() {
         return (
             <div>
+                <Header/>
                 <p>game over {this.props.username}!!!!</p>
                 <p>YourScore: {this.props.score}</p>
                 <p>Your Ranking: {this.scoreRanking()}</p>
-                <Link to='/highscores'>View All Time High Scores</Link>
-                <Link to='/userscores'>View Your Best Scores</Link>
+                <h2 onClick={() => this.handleClick('/highscores')}>View All Time High Scores</h2>
+                <h2 onClick={() => this.handleClick('/userscores')}>View Your Best Scores</h2>
+                <h2 onClick={() => this.handleClick('/game')}>Play Again</h2>
             </div>
         )
     }
