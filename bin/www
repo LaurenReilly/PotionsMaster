@@ -13,7 +13,8 @@ require('dotenv').config();
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort('3001');
+ //so we can use heroku's port OR the one we hardcoded
+var port = normalizePort(process.env.PORT || '3001');
 app.set('port', port);
 
 /**
