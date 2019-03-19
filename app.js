@@ -19,17 +19,25 @@ app.use(cookieParser());
 app.use(session({ secret: 'mymilkshakebringsalltheboystotheyard' }));
 
 
-app.use(express.static('public', {
-  etag: false
-}));
+// app.use(express.static('public', {
+//   etag: false
+// }));
 
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/scores', scoresRouter);
+
+//setting up for deploying, api will serve game
+app.use(express.static(path.join(__dirname, 'game/build')));
+
+//allows react router to handle routes
+app.get('/*', function(req,res) {
+  res.sendFile(path.join)(__dirname, 'game/build', 'index.html')
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -29,7 +29,7 @@ class UserScores extends Component  {
     }
 
     handleClick(page) {
-        this.props.history.push(page)
+        this.props.history.push(page);
     }
 
     render() {
