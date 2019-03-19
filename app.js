@@ -28,12 +28,13 @@ app.use(session({ secret: 'mymilkshakebringsalltheboystotheyard' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+//setting up for deploying, api will serve game
+app.use(express.static(path.join(__dirname, 'game/build')));
+
 // app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/scores', scoresRouter);
 
-//setting up for deploying, api will serve game
-app.use(express.static(path.join(__dirname, 'game/build')));
 
 //allows react router to handle routes
 app.get('/*', function(req,res) {
