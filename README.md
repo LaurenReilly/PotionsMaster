@@ -1,50 +1,28 @@
-# Highscores API
+# REMEDIAL POTIONS
+### With Professor Snape
+
+You're pretty bad at potions and Snape knows it. Fortunately for you, you're one of Dumbledore's favorites and he really wants you to excel on your OWLS. As a favor for Dumbledore, Professor Snape has agreed (reluctantly) to allow you into his classroom after hours for some potions practice. He's got a table of ingredients for you to choose from as he instructs you in making potions. Work quickly because Professor Snape doesn't have all day! Oh and do try to ignore the terrible things he says to you,he's just bitter.
+
+## Screen Shots
+
+### Home
+![home](./readImages/home.png)
+
+### Rules
+![rules](./readImages/rules.png)
+
+### Game
+![game](./readImages/game.png)
 
 
-## SETUP
+## Technical
 
-Create your own '.env' file. Copy over the contents of '.env.dist'. Ask Adam to provide you with the environment values
+- Built with React.js, Node.js, Bootstrap, and Redux. 
+- Back-end server uses a postgreSQL database hosted by AWS. 
+- bcrypt, and passport are utilized for login. 
+- Deployed via AWS.
 
-Use 'npm install' to install the dependencies in package.json
 
-Use 'npm start' to run this server on port 3001
-
-## Usage
-
-```js
-POST '/users/login'
-```
-Use this route to log in with "username" and "password" in the POST body
-
-```js
-POST '/users/logout'
-```
-Use this route to log out
-
-```js
-GET '/users/status'
-```
-Use this route to check if anyone is currently logged in
-
-```js
-POST '/users/register'
-```
-Use this route to create a new user with "username" and "password" in the POST body
-
-```js
-GET '/scores/highscores'
-```
-Use this route to get the top 10 high scores
-
-```js
-GET '/scores/user/:username'
-```
-Use this route to get all the scores for a given user
-
-```js
-POST '/scores/record'
-```
-Use this route record a new score in the database for the logged in user (A user must be logged in, or else you'll get an error)
 
 
 
